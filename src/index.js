@@ -41,7 +41,7 @@ const feedbackReducer = (state = {feeling: '', support: '', understanding: '', c
         }
     }
     console.log(state)
-   return {}
+   return state
 };
 
 const storeInstance = createStore(

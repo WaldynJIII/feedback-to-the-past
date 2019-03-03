@@ -20,4 +20,4 @@ class Supported extends Component {
 const mapReduxStoreToProps = (reduxStore) => ({
     reduxStore: reduxStore
 })
-export default connect(mapReduxStoreToProps)(Checkout);
+export default connect(mapReduxStoreToProps)(Supported);

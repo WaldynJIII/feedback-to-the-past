@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 class Understanding extends Component {
 state={
     understanding: '',
@@ -9,15 +10,24 @@ state={
 
 handleChange=(event)=>{
 this.setState({
+    ...this.state,
     understanding: event.target.value
 })
 }
-thisIsDispatch=()=>{
-    this.props.dispatch({type: 'ADD_UNDERSTANDING', paylod: this.state.understanding})
-    thi
+thisIsDispatch=(event)=>{
+    event.preventDefault();
+    this.props.dispatch({type: 'ADD_UNDERSTANDING', payload: this.state.understanding})
+    this.setState({
+        ...this.state,
+        redirect: true,
+    })
 }
 
     render() {
+        console.log(this.state.understanding)
+        if(this.state.redirect){
+            return <Redirect push to='/comments' />
+        }
         return (
 
 
@@ -87,4 +97,4 @@ thisIsDispatch=()=>{
 const mapReduxStoreToProps = (reduxStore) => ({
     reduxStore: reduxStore
 })
-export default connect(mapReduxStoreToProps)(Checkout);
+export default connect(mapReduxStoreToProps)(Understanding);
