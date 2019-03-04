@@ -10,7 +10,7 @@ class FeedbackReview extends Component {
 this.checkReview()
     }
     checkReview=()=>{
-        if(this.props.reduxStore.feedbackReducer.feeling == 'undefined'){
+        if(this.props.reduxStore.feedbackReducer !== {feeling:'', support: '', understanding: '', comments: '',}){
             this.setState({
                 ...this.state,
                 complete: true
@@ -19,27 +19,7 @@ this.checkReview()
    
     }
  
-        else if (this.props.reduxStore.feedbackReducer.support == 'undefined') {
-
-            this.setState({
-                ...this.state,
-                complete: true
-            })
-        } 
-       else  if (this.props.reduxStore.feedbackReducer.understanding !== 'undefined') {
-
-            this.setState({
-                ...this.state,
-                complete: true
-        })
-    } 
-        else if (this.props.reduxStore.feedbackReducer.comments == 'undefined') {
-            this.setState({
-                ...this.state,
-                complete: true
-            })
-            
-        } 
+       
         else{
             this.setState({
                 ...this.state,
@@ -59,13 +39,13 @@ this.checkReview()
                 understanding: this.props.reduxStore.feedbackReducer.understanding, 
                 comments: this.props.reduxStore.feedbackReducer.comments}
         }).then((response) => {
-            console.log(response.data);
+           this.props.dispatch({type: 'CLEAR'})
             // response.data will be the array of artists
         });
     }
 render(){
     console.log(this.props.reduxStore.feedbackReducer.comments)
-    if(this.state.complete = true){
+    if(this.state.complete == true){
     return(
 
         <div>
@@ -87,7 +67,7 @@ render(){
     
     )
 }
-else{
+else if(this.state.complete == false){
     return(
         
 

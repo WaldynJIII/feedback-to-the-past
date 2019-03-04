@@ -32,7 +32,7 @@ const feedbackReducer = (state = {feeling: '', support: '', understanding: '', c
             comments: action.payload,
         }
     }
-    if (action.type === 'CLEAR_CART') {
+    if (action.type === 'CLEAR') {
         return {
             feeling: '',
             support: '',
