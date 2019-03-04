@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
+import FeedbackSummary from '../FeedbackSummary/FeedbackSummary'
 class Feeling extends Component {
     state = {
         feeling: '',
@@ -32,7 +33,7 @@ class Feeling extends Component {
 
 
             <div>
-                <h1> Understanding</h1>
+                <h1> How Are You Feeling</h1>
                 <form onSubmit={this.thisIsDispatch}>
                     <div onChange={this.handleChange}>
                         <div>
@@ -90,6 +91,7 @@ class Feeling extends Component {
                     <input type="submit" value="Submit" />
 
                 </form>
+                <FeedbackSummary />
             </div>
         )
     }

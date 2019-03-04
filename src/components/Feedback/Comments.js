@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
+import FeedbackSummary from '../FeedbackSummary/FeedbackSummary'
 class Comments extends Component {
     state = {
         comments: '',
@@ -26,71 +27,34 @@ class Comments extends Component {
     render() {
         console.log(this.state.support)
         if (this.state.redirect) {
-            return <Redirect push to='/understanding' />
+            return <Redirect push to='/review' />
         }
         return (
 
 
             <div>
-                <h1> Understanding</h1>
+                <h1> Any additional comments</h1>
                 <form onSubmit={this.thisIsDispatch}>
-                    <div onChange={this.handleChange}>
-                        <div>
-                            <label>
+                    <div >
+                        
+                            
                                 <input
-                                    type="radio"
-                                    value='1'
-                                    name="type"
+                            onChange={this.handleChange}
+                                    type="text"
+                                    value={this.state.comments}
+                                   
                                 />
-                                1
-                </label>
-                        </div>
-                        <div>
-                            <label>
-                                <input
-                                    type="radio"
-                                    value='2'
-                                    name="type"
-                                />
-                                2
-                </label>
-                        </div>
-                        <div>
-                            <label>
-                                <input
-                                    type="radio"
-                                    value='3'
-                                    name="type"
-                                />
-                                3
-                </label>
-                        </div>
-                        <div>
-                            <label>
-                                <input
-                                    type="radio"
-                                    value='4'
-                                    name="type"
-                                />
-                                4
-                </label>
-                        </div>
-                        <div>
-                            <label>
-                                <input
-                                    type="radio"
-                                    value='5'
-                                    name="type"
-                                />
-                                5
-                </label>
-                        </div>
+                                
+                
+                        
 
                     </div>
                     <input type="submit" value="Submit" />
 
                 </form>
+                <FeedbackSummary />
             </div>
+
         )
     }
 }
