@@ -3,6 +3,52 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 
 class FeedbackReview extends Component {
+    state={
+        complete: false
+    }
+    componentDidMount=()=>{
+this.checkReview()
+    }
+    checkReview=()=>{
+        if(this.props.reduxStore.feedbackReducer.feeling == 'undefined'){
+            this.setState({
+                ...this.state,
+                complete: true
+            })
+
+   
+    }
+ 
+        else if (this.props.reduxStore.feedbackReducer.support == 'undefined') {
+
+            this.setState({
+                ...this.state,
+                complete: true
+            })
+        } 
+       else  if (this.props.reduxStore.feedbackReducer.understanding !== 'undefined') {
+
+            this.setState({
+                ...this.state,
+                complete: true
+        })
+    } 
+        else if (this.props.reduxStore.feedbackReducer.comments == 'undefined') {
+            this.setState({
+                ...this.state,
+                complete: true
+            })
+            
+        } 
+        else{
+            this.setState({
+                ...this.state,
+                complete: false
+            })
+        }
+
+}
+
     yeetReview = () => {
         // just like $.ajax()
         axios({
@@ -18,6 +64,8 @@ class FeedbackReview extends Component {
         });
     }
 render(){
+    console.log(this.props.reduxStore.feedbackReducer.comments)
+    if(this.state.complete = true){
     return(
 
         <div>
@@ -36,12 +84,35 @@ render(){
             </ul>
 <button onClick={this.yeetReview}>Submit Review</button>
         </div>
-
+    
     )
 }
+else{
+    return(
+        
 
-
+            <div>
+                <ul>
+                    <li> Feeling {this.props.reduxStore.feedbackReducer.feeling}
+                    </li>
+                    <li>
+                        Support {this.props.reduxStore.feedbackReducer.support}
+                    </li>
+                    <li>
+                        Understanding {this.props.reduxStore.feedbackReducer.understanding}
+                    </li>
+                    <li>
+                        Comments {this.props.reduxStore.feedbackReducer.comments}
+                    </li>
+                </ul>
+                
+            </div>
+    )
 }
+}
+}
+
+
 const mapReduxStoreToProps = (reduxStore) => ({
     reduxStore: reduxStore
 })
